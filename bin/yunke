@@ -1,0 +1,55 @@
+#!/usr/bin/env node
+
+process.env.NODE_PATH = __dirname + '/../node_modules/'
+
+const {resolve} = require('path')
+
+const chalk = require('chalk');
+
+const program = require('commander')
+
+const res = command => resolve(__dirname, '../lib/core/', command)
+
+function make_red(txt) {
+  return chalk.red(txt);
+}
+
+program
+  .version(require('../package').version)
+
+program
+  .usage('<command>')
+
+program
+  .command('add <repo> [branch]')
+  .description('Add a new template')
+  .action(require(res('add')))
+
+program
+  .command('list')
+  .description('List all the templates')
+  .action(() => {
+    require(res('list'))
+  })
+
+program
+  .command('init <template> [dest]')
+  .description('Generate a new project')
+  .action(require(res('init')))
+
+program
+  .command('rm [template]')
+  .description('Remove a template')
+  .action(require(res('remove')))
+
+program
+  .command('*', {noHelp: true})
+  .action(function () {
+    program.outputHelp(make_red);
+  });
+
+program.parse(process.argv)
+
+if (!program.args.length) {
+  program.help()
+}
