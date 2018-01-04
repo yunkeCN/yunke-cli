@@ -2,6 +2,7 @@
 ## 主要功能 
 
 快速创建项目，初始化项目结构及配置
+目前没有发布npm包，本地开发clone后npm link
 
 
 ## 可用命令
@@ -43,5 +44,12 @@ $ cd my-project
 ```
 
 ## Todo
-
-- 初始化项目init直接使用远程仓库 yunke init https://github.com/fbi-templates/fbi-project-vue.git
+- 发布npm包？
+- 初始化项目init直接使用远程仓库 
+  yunke init https://github.com/fbi-templates/fbi-project-vue.git
+- 已建git仓库，本地初始化时同时写入git配置
+ git init
+ git remote add origin git@gitlab.com:aaaa/aaaa.git
+ git add .
+ git commit
+ git push -u origin master
