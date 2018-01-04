@@ -33,7 +33,7 @@ program
   })
 
 program
-  .command('init <template> [dest]')
+  .command('init [template] [dest]')
   .description('Generate a new project')
   .action(require(res('init')))
 
